@@ -1,0 +1,65 @@
+svg {
+  font: 15px sans-serif;
+}
+/**
+Slider
+**/
+circle {
+  -webkit-transition: fill-opacity 250ms linear;
+}
+
+.selecting circle {
+  fill-opacity: .2;
+}
+
+.selecting circle.selected {
+  stroke: #f00;
+}
+
+.resize path {
+  fill: lightblue;
+  fill-opacity: .5;
+  stroke: #000;
+  stroke-width: 0px;
+}
+.brush .extent {
+  fill-opacity: .7;
+  fill:lightgray;
+  shape-rendering: crispEdges;
+}
+
+/**
+Hist
+**/
+.bar rect {
+  fill: steelblue;
+  shape-rendering: crispEdges;
+}
+
+.bar text {
+  fill: #fff;
+}
+.hist{
+    font-size: 9px;
+}
+
+/**
+General
+**/
+#plot{
+    float: left;
+}
+#slider{
+    float: left;
+}
+#hist{
+    clear: both;
+    float:left;
+    height:300px;
+    margin-top: 50px;
+}
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
