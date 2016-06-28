@@ -1,43 +1,43 @@
 svg {
-  font: 15px sans-serif;
+    font: 15px sans-serif;
 }
 /**
 Slider
 **/
 circle {
-  -webkit-transition: fill-opacity 250ms linear;
+    -webkit-transition: fill-opacity 250ms linear;
 }
 
 .selecting circle {
-  fill-opacity: .2;
+    fill-opacity: .2;
 }
 
 .selecting circle.selected {
-  stroke: #f00;
+    stroke: #f00;
 }
 
 .resize path {
-  fill: lightblue;
-  fill-opacity: .5;
-  stroke: #000;
-  stroke-width: 0px;
+    fill: lightblue;
+    fill-opacity: .5;
+    stroke: #000;
+    stroke-width: 0px;
 }
 .brush .extent {
-  fill-opacity: .7;
-  fill:lightgray;
-  shape-rendering: crispEdges;
+    fill-opacity: .7;
+    fill:lightgray;
+    shape-rendering: crispEdges;
 }
 
 /**
 Hist
 **/
 .bar rect {
-  fill: steelblue;
-  shape-rendering: crispEdges;
+    fill: steelblue;
+    shape-rendering: crispEdges;
 }
 
 .bar text {
-  fill: #fff;
+    fill: #fff;
 }
 .hist{
     font-size: 9px;
@@ -62,7 +62,43 @@ General
     clear: both;
 }
 .axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/*Parallel stuff*/
+.background path {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+}
+
+.foreground path {
+    fill: none;
+    stroke: rgb(180, 16, 14);
+}
+
+.axis text {
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
+}
+
+/**
+Resizing
+*/
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: middle;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    font: 10px sans-serif;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

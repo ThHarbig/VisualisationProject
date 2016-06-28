@@ -87,6 +87,10 @@ function slider(div) {
             var s=brush.extent();
             var randomSet=extractRandom(subset,1000);
             //Call complicated Plots here
+            
+            // Parallel coordinates
+            var parallel = ParCorPlot();
+            parallel.init(randomSet);
         });
 
     };
