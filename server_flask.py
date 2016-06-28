@@ -14,23 +14,23 @@ app.config['STORMPATH_API_KEY_FILE'] = 'apiKey.properties'
 app.config['STORMPATH_APPLICATION'] = 'flaskr'
 
 def readInData():
-    data={}
+    data=[]
     filepath = os.path.join(os.path.dirname(__file__), 'static/Dataset_S1_Human.csv')
     with open(filepath, "r") as csvFile:
         spamreader = csv.reader(csvFile, delimiter=',', quotechar='|')
         for row in spamreader:
             if row[0]!="Primary_Accession":
-                key=row[0]
-                if key not in data:
-                    data[key]={}
-                data[key]["Uncertainty"]=float(row[1])
-                data[key]["Length"]=int(row[2])
+                entry={}
+                entry["Primary_Accession"]=row[0]
+                entry["Uncertainty"]=float(row[1])
+                entry["Length"]=int(row[2])
                 if row[3]=="NA":
-                    data[key]["Disorder"]="NA"
+                    entry["Disorder"]="NA"
                 else:
-                    data[key]["Disorder"] = float(row[3])
-                data[key]["Compositional Bias"]=float(row[4])
-                data[key]["Membrane"]=float(row[5])
+                    entry["Disorder"] = float(row[3])
+                    entry["Compositional Bias"]=float(row[4])
+                    entry["Membrane"]=float(row[5])
+                data.append(entry)
     data=json.dumps(data)
     return data
 

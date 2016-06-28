@@ -3,7 +3,8 @@
  */
 function slider(div) {
     var slide = {
-        div:div
+        div:div,
+        subset:[]
     };
     slide["init"] = function () {
         var margin = {top: 10, right: 50, bottom: 20, left: 50},
@@ -30,7 +31,7 @@ function slider(div) {
                 return i ? -Math.PI : Math.PI;
             });
 
-        var svg = d3.select("#"+this.div).append("svg")
+        var svg = d3.select("#"+div).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -69,15 +70,24 @@ function slider(div) {
              * Call Plots here or add a seperate button
              */
             d3.selectAll("#hist").selectAll("svg").remove();
-            s=brush.extent();
-            var subset=extractSubset(s);
+            var s=brush.extent();
+            subset=extractSubset(s);
+
             var keys=d3.keys(d3.values(dataset)[0]);
+            keys.splice(keys.indexOf("Primary_Accession"),1);
+
             for(var key in keys){
                 var values=extractFeature(subset,keys[key]);
                 var histogramm=hist(values,"hist",keys[key]);
                 histogramm.init()
             }
+
         }
+        document.getElementById("update").addEventListener("click",function () {
+            var s=brush.extent();
+            var randomSet=extractRandom(subset,1000);
+            //Call complicated Plots here
+        });
 
     };
 

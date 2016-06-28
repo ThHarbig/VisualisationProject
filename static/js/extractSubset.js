@@ -13,13 +13,33 @@ function extractSubset(range){
         lower=range[1];
         higher=range[0];
     }
-    var subset={};
+    var subset=[];
     for(var key in dataset){
         if(dataset[key]["Uncertainty"]>=lower && dataset[key]["Uncertainty"]<=higher){
-            subset[key]=dataset[key]
+            subset.push(dataset[key])
         }
     }
     return subset
+}
+/**
+ * extracts a random subset
+ * @param subset
+ * @param number of entries
+ * @returns {Array}
+ */
+function extractRandom(subset,number){
+    var randomIndices=[];
+    var randomSubset=[];
+    var i=0;
+    while(i<number) {
+        var index=Math.floor(Math.random() * subset.length);
+        if(randomIndices.indexOf(index)==-1){
+            randomSubset.push(subset[index])
+            i+=1
+
+        }
+    }
+    return randomSubset
 }
 /**
  * Extracts array of values for the histograms

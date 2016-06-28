@@ -55,8 +55,11 @@ General
 #hist{
     clear: both;
     float:left;
-    height:300px;
     margin-top: 50px;
+}
+#update{
+    float: left;
+    clear: both;
 }
 .axis path, .axis line {
   fill: none;
