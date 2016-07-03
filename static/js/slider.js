@@ -92,6 +92,10 @@ function slider(div) {
             // Parallel coordinates
             var parallel = ParCorPlot();
             parallel.init(randomSet);
+            //Scatter plot
+            d3.selectAll("#scatterDiv").selectAll("svg").remove();
+            var scatter = scatter_plot(randomSet, "#scatterDiv")
+            scatter.init()
         });
 
     };
