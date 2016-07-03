@@ -5,7 +5,7 @@ function table(data, div) {
     };
 
     table["init"] = function () {
-
+        d3.selectAll("#"+div).selectAll("table").remove();
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
                 var x = a[key];
