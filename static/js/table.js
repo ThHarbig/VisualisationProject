@@ -13,8 +13,11 @@ function table(data, div) {
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
         }
-
-        sortByKey(data, "Uncertainty");
+        var hasUncert=false;
+        if(d3.keys(data[0]).indexOf("Uncertainty")!=-1){
+            hasUncert=true;
+            sortByKey(data, "Uncertainty");
+        }
 
         var tbl = document.createElement("table");
         var tbody = document.createElement("tbody");
@@ -27,21 +30,24 @@ function table(data, div) {
         var lengthHeader = document.createElement("th");
         var membraneHeader = document.createElement("th");
         var primary_accessionHeader = document.createElement("th");
-        var uncertaintyHeader = document.createElement("th");
 
         compHeader.textContent = "Computational Bias";
         disorderHeader.textContent = "Disorder";
         lengthHeader.textContent = "Length";
         membraneHeader.textContent = "Membrane";
         primary_accessionHeader.textContent = "Primary Accession";
-        uncertaintyHeader.textContent = "Uncertainty";
 
-        header.appendChild(compHeader);
-        header.appendChild(disorderHeader);
+        header.appendChild(primary_accessionHeader);
+        if(hasUncert) {
+            var uncertaintyHeader = document.createElement("th");
+            uncertaintyHeader.textContent = "Uncertainty";
+            header.appendChild(uncertaintyHeader);
+        }
+
         header.appendChild(lengthHeader);
         header.appendChild(membraneHeader);
-        header.appendChild(primary_accessionHeader);
-        header.appendChild(uncertaintyHeader);
+        header.appendChild(disorderHeader);
+        header.appendChild(compHeader);
 
         thead.appendChild(header);
         //Add the rest of the data to the table
@@ -51,7 +57,6 @@ function table(data, div) {
             var td_length = document.createElement("td");
             var td_membrane = document.createElement("td");
             var td_primary_accession = document.createElement("td");
-            var td_uncertainty = document.createElement("td");
 
 
             td_comp_bias.textContent = data[i]["Compositional Bias"];
@@ -59,16 +64,19 @@ function table(data, div) {
             td_length.textContent = data[i].Length;
             td_membrane.textContent = data[i].Membrane;
             td_primary_accession.textContent = data[i].Primary_Accession;
-            td_uncertainty.textContent = data[i].Uncertainty;
 
             var tr_body = document.createElement("tr");
 
-            tr_body.appendChild(td_comp_bias);
-            tr_body.appendChild(td_disorder);
+            tr_body.appendChild(td_primary_accession);
+            if(hasUncert){
+                var td_uncertainty = document.createElement("td");
+                td_uncertainty.textContent = data[i].Uncertainty;
+                tr_body.appendChild(td_uncertainty);
+            }
             tr_body.appendChild(td_length);
             tr_body.appendChild(td_membrane);
-            tr_body.appendChild(td_primary_accession);
-            tr_body.appendChild(td_uncertainty);
+            tr_body.appendChild(td_disorder);
+            tr_body.appendChild(td_comp_bias);
 
             tbody.appendChild(tr_body);
         }
