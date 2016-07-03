@@ -87,7 +87,8 @@ function slider(div) {
             var s=brush.extent();
             var randomSet=extractRandom(subset,200);
             //Call complicated Plots here
-            
+			var tbl = table(randomSet,"table")
+			tbl.init()
             // Parallel coordinates
             var parallel = ParCorPlot();
             parallel.init(randomSet);
