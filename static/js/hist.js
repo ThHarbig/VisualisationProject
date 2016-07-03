@@ -9,13 +9,6 @@ function hist(data, div, label) {
     };
     hist["init"] = function () {
         var values = this.data;
-// Formatters for counts and times (converting numbers to Dates).
-        var formatCount = d3.format(",.0f"),
-            formatTime = d3.time.format("%H:%M"),
-            formatMinutes = function (d) {
-                return formatTime(new Date(2012, 0, 1, 0, d));
-            };
-
         var margin = {top: 10, right: 30, bottom: 50, left: 30},
             width = 200 - margin.left - margin.right,
             height = 150 - margin.top - margin.bottom;

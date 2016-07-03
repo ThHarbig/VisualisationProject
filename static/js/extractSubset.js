@@ -9,6 +9,7 @@
 function extractSubset(range){
     var lower=range[0];
     var higher=range[1];
+    var dist=lower-higher;
     if(range[0]>=range[1]){
         lower=range[1];
         higher=range[0];
@@ -16,7 +17,18 @@ function extractSubset(range){
     var subset=[];
     for(var key in dataset){
         if(dataset[key]["Uncertainty"]>=lower && dataset[key]["Uncertainty"]<=higher){
-            subset.push(dataset[key])
+            if(dist!=0){
+                subset.push(dataset[key])
+            }
+            else{
+                var topush=[];
+                for(var k in dataset[key]) {
+                    if(k!="Uncertainty"){
+                        topush[k]=dataset[key][k]
+                    }
+                }
+                subset.push(topush)
+            }
         }
     }
     return subset
@@ -34,7 +46,7 @@ function extractRandom(subset,number){
     while(i<number) {
         var index=Math.floor(Math.random() * subset.length);
         if(randomIndices.indexOf(index)==-1){
-            randomSubset.push(subset[index])
+            randomSubset.push(subset[index]);
             i+=1
 
         }

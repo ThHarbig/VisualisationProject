@@ -73,7 +73,7 @@ function slider(div) {
             var s=brush.extent();
             subset=extractSubset(s);
 
-            var keys=d3.keys(d3.values(dataset)[0]);
+            var keys=d3.keys(d3.values(subset)[0]);
             keys.splice(keys.indexOf("Primary_Accession"),1);
 
             for(var key in keys){
@@ -85,7 +85,7 @@ function slider(div) {
         }
         document.getElementById("update").addEventListener("click",function () {
             var s=brush.extent();
-            var randomSet=extractRandom(subset,1000);
+            var randomSet=extractRandom(subset,200);
             //Call complicated Plots here
             
             // Parallel coordinates

@@ -66,6 +66,11 @@ General
     stroke: #000;
     shape-rendering: crispEdges;
 }
+details{
+    float: left;
+    clear: both;
+    width: 100%;
+}
 
 /*Parallel stuff*/
 .background path {

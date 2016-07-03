@@ -25,14 +25,26 @@
         <button id="update">
             Update Plots
         </button>
-        <div id="parCoordsDiv"></div>
     </div>
     <div id="plots">
+        <details>
+            <summary>Parallel Coordinates</summary>
+        <div id="parCoordsDiv"></div>
+        </details>
+        <details>
+            <summary>Scatter Plot</summary>
+        <div id="scatterDiv"></div>
+        </details>
+        <details>
+            <summary>Table</summary>
+        <div id="tableDiv"></div>
+        </details>
         <!--Hier spaeter Parallel, Scatter Plot und Tabelle-->
     </div>
 </div>
 <script>
     var dataset = {{ data | safe }};
+    console.log(dataset)
     slider = slider("slider");
     slider.init();
     //andere Plots bei slider.js beim Button aufrufen
