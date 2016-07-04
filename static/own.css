@@ -46,11 +46,11 @@ Hist
 /**
 Scatter
 **/
+
 .x.axis line, .y.axis line {
 	stroke: #ddd;
 }
-
-.axis path {
+#scatterDiv .axis path {
 	display: none;
 }
 
@@ -117,7 +117,13 @@ details{
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     cursor: move;
 }
-
+/**
+Table
+*/
+#tableDiv{
+    height: 500px;
+    overflow: auto;
+}
 /**
 Resizing
 */
