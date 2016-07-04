@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='own.css') }}">
     <script src="/static/js/slider.js"></script>
     <script src="/static/js/hist.js"></script>
+    <script src="/static/js/scatter.js"></script>
     <script src="/static/js/table.js"></script>
     <script src="/static/js/extractSubset.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -45,7 +46,6 @@
 </div>
 <script>
     var dataset = {{ data | safe }};
-    console.log(dataset)
     slider = slider("slider");
     slider.init();
     //andere Plots bei slider.js beim Button aufrufen

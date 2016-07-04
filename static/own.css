@@ -44,6 +44,35 @@ Hist
 }
 
 /**
+Scatter
+**/
+.x.axis line, .y.axis line {
+	stroke: #ddd;
+}
+
+.axis path {
+	display: none;
+}
+
+.cell text {
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.frame {
+	fill: none;
+	stroke: #000;
+}
+
+circle {
+	stroke: #000;
+	stroke-width: 0.5px;
+	fill: steelblue;
+	fill-opacity: .5;
+}
+
+
+/**
 General
 **/
 #plot{

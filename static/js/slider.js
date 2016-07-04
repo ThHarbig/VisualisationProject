@@ -87,11 +87,15 @@ function slider(div) {
             var s=brush.extent();
             var randomSet=extractRandom(subset,200);
             //Call complicated Plots here
-			var tbl = table(randomSet,"table")
-			tbl.init()
+			var tbl = table(subset,"tableDiv");
+			tbl.init();
             // Parallel coordinates
             var parallel = ParCorPlot();
             parallel.init(randomSet);
+            //Scatter plot
+            d3.selectAll("#scatterDiv").selectAll("svg").remove();
+            var scatter = scatter_plot(randomSet, "#scatterDiv")
+            scatter.init()
         });
 
     };
