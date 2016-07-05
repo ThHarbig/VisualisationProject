@@ -20,6 +20,7 @@ function table(data, div) {
         }
 
         var tbl = document.createElement("table");
+		tbl.classList.add("tablesorter")
         var tbody = document.createElement("tbody");
         var thead = document.createElement("thead");
         //Add a header

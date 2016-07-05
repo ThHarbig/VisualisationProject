@@ -89,6 +89,7 @@ function slider(div) {
             //Call complicated Plots here
 			var tbl = table(subset,"tableDiv");
 			tbl.init();
+			$("table").tablesorter();
             // Parallel coordinates
             var parallel = ParCorPlot();
             parallel.init(randomSet);
