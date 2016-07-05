@@ -11,8 +11,7 @@ function scatter_plot(data,div) {
 		for(key in this.data) {
 			data.push(this.data[key])
 		}
-		var width = 960,
-			size = 200,
+		var size = 200,
 			padding = 50;
 
 		var x = d3.scale.linear()
@@ -30,26 +29,30 @@ function scatter_plot(data,div) {
 			.scale(y)
 			.orient("left")
 			.ticks(6);
-		  
+
 		var domainByTrait = {},
 			traits = d3.keys(d3.values(data)[0]).filter(function(d) { return d !== "Primary_Accession"; });
 			n = traits.length;
-			
+
 		traits.forEach(function(trait) {
 			if(trait == "Uncertainty" || trait == "Length")
 				domainByTrait[trait] = d3.extent(extractFeature(data, trait))
 			else
 				domainByTrait[trait] = [0,100];
 		});
-		
+
 		xAxis.tickSize(size * n);
 		yAxis.tickSize(-size * n);
 
 		var svg = d3.select(div).append("svg")
-		  .attr("width", size * n + padding)
-		  .attr("height", size * n + padding)
+		  .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "0 0 " + (size*n+padding) + " " + (size*n+padding) + "")
+          .classed("svg-content-responsive", true)
 		.append("g")
 		  .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+
+		d3.select(div)
+        	.classed("svg-container", true);
 
 		svg.selectAll(".x.axis")
 		  .data(traits)
@@ -57,14 +60,14 @@ function scatter_plot(data,div) {
 		  .attr("class", "x axis")
 		  .attr("transform", function(d, i) { return "translate(" + (n - i - 1) * size + ",0)"; })
 		  .each(function(d) { x.domain(domainByTrait[d]); d3.select(this).call(xAxis); });
-		  
+
 		svg.selectAll(".y.axis")
 		  .data(traits)
 		.enter().append("g")
 		  .attr("class", "y axis")
 		  .attr("transform", function(d, i) { return "translate(0," + i * size + ")"; })
 		  .each(function(d) { y.domain(domainByTrait[d]); d3.select(this).call(yAxis); });
-		  
+
 		var cell = svg.selectAll(".cell")
 		  .data(cross(traits, traits))
 		.enter().append("g")
@@ -97,7 +100,7 @@ function scatter_plot(data,div) {
 			  .enter().append("circle")
 				.attr("cx", function(d) { return x(d[p.x]); })
 				.attr("cy", function(d) { return y(d[p.y]); })
-				.attr("r", 1);
+				.attr("r", 3);
 		}
 
 		function cross(a, b) {

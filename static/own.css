@@ -1,6 +1,18 @@
 svg {
     font: 15px sans-serif;
 }
+
+header {
+    background:steelblue;
+	text-align: center;
+    margin:0px auto;
+}
+
+h1 {
+	font-size: 48pt;
+	color: white;
+}
+
 /**
 Slider
 **/
@@ -24,7 +36,7 @@ circle {
 }
 .brush .extent {
     fill-opacity: .7;
-    fill:lightgray;
+    fill: steelblue;
     shape-rendering: crispEdges;
 }
 
@@ -46,8 +58,7 @@ Hist
 /**
 Scatter
 **/
-
-.x.axis line, .y.axis line {
+#scatterDiv .x.axis line, .y.axis line {
 	stroke: #ddd;
 }
 #scatterDiv .axis path {
@@ -71,34 +82,55 @@ circle {
 	fill-opacity: .5;
 }
 
-
 /**
 General
 **/
-#plot{
-    float: left;
-}
-#slider{
-    float: left;
-}
 #hist{
-    clear: both;
-    float:left;
     margin-top: 50px;
 }
-#update{
-    float: left;
-    clear: both;
+
+#menu {
+    text-align: center;
 }
+
+#slider {
+    width: 80%;
+}
+
+#plots {
+    width: 100%;
+	display: inline-block;
+}
+
+#plots_left, #plots_right{
+    width: 50%;
+	float: left;
+}
+
 .axis path, .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
-details{
-    float: left;
-    clear: both;
-    width: 100%;
+
+#scatterDiv text {
+	font-size: 12pt;
+}
+
+#slider {
+    margin: auto;
+	float: left;
+}
+
+button {
+    background-color: steelblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 /*Parallel stuff*/
@@ -110,7 +142,7 @@ details{
 
 .foreground path {
     fill: none;
-    stroke: rgb(180, 16, 14);
+    stroke: steelblue;
 }
 
 .axis text {
@@ -135,6 +167,11 @@ Resizing
     vertical-align: middle;
     overflow: hidden;
 }
+
+#parCoordsDiv{
+	padding-bottom:50%;
+}
+
 .svg-content-responsive {
     font: 10px sans-serif;
     display: inline-block;

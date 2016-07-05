@@ -9,7 +9,7 @@ function hist(data, div, label) {
     };
     hist["init"] = function () {
         var values = this.data;
-        var margin = {top: 10, right: 30, bottom: 50, left: 30},
+        var margin = {top: 0, right: 30, bottom: 50, left: 30},
             width = 200 - margin.left - margin.right,
             height = 150 - margin.top - margin.bottom;
         if(this.label=="Length"){

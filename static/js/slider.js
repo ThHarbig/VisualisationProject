@@ -8,7 +8,7 @@ function slider(div) {
     };
     slide["init"] = function () {
         var margin = {top: 10, right: 50, bottom: 20, left: 50},
-            width = 500 - margin.left - margin.right,
+            width = 960 - margin.left - margin.right,
             height = 50 - margin.top - margin.bottom ;
 
         var x = d3.scale.linear()
@@ -81,7 +81,6 @@ function slider(div) {
                 var histogramm=hist(values,"hist",keys[key]);
                 histogramm.init()
             }
-
         }
         document.getElementById("update").addEventListener("click",function () {
             var s=brush.extent();

@@ -9,8 +9,8 @@
     <script src="/static/js/hist.js"></script>
     <script src="/static/js/scatter.js"></script>
     <script src="/static/js/table.js"></script>
-	<script type="text/javascript" src="/static/js/jquery-latest.js"></script> 
-	<script type="text/javascript" src="/static/js/jquery.tablesorter.js"></script> 
+	<script type="text/javascript" src="/static/js/jquery-latest.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.tablesorter.js"></script>
     <script src="/static/js/extractSubset.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="/static/js/ParallelCoordinates.js"></script>
@@ -20,33 +20,24 @@
 
 <body>
 
-<h1>Uncertainty in Proteins</h1>
-<div id="container">
-    <div id="menu">
-        <div id="slider">
-        </div>
-        <div id="hist">
-        </div>
-        <button id="update">
-            Update Plots
-        </button>
-    </div>
-    <div id="plots">
-        <details>
-            <summary>Parallel Coordinates</summary>
-        <div id="parCoordsDiv"></div>
-        </details>
-        <details>
-            <summary>Scatter Plot</summary>
-        <div id="scatterDiv"></div>
-        </details>
-        <details>
-            <summary>Table</summary>
-        <div id="tableDiv"></div>
-        </details>
-        <!--Hier spaeter Parallel, Scatter Plot und Tabelle-->
-    </div>
+<header>
+	<h1>Uncertainty in Proteins</h1>
+</header>
+
+<div id="menu">
+    <div id="slider"></div>
+    <button id="update">Update Plots</button>
 </div>
+<div id="plots">
+    <div id="plots_left">
+		<div id="hist"></div>
+		<div id="parCoordsDiv"></div>
+	</div>
+    <div id="plots_right">
+		<div id="scatterDiv"></div>
+	</div>
+</div>
+<div id="tableDiv"></div>
 <script>
     var dataset = {{ data | safe }};
     slider = slider("slider");
