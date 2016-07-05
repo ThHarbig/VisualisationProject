@@ -33,9 +33,19 @@ makePlot = function (subset) {
 
         // Extract the list of dimensions and create a scale for each.
         x.domain(dimensions = d3.keys(subset[0]).filter(function(d) {
-            return d != "Primary_Accession" && (y[d] = d3.scale.linear()
-                    .domain(d3.extent(subset, function(p) { return +p[d]; }))
-                    .range([height, 0]));
+            if (d == "Length"){
+                return (y[d] = d3.scale.linear()
+                    .domain(d3.extent(subset, function (p) {
+                        return + +p[d];
+                    })))
+                    .range([height, 0]);
+            }
+            else {
+                return d != "Primary_Accession" && (y[d] = d3.scale.linear()
+                        .domain([0, 100])
+                        // .domain(d3.extent(subset, function(p) { return +p[d]; }))
+                        .range([height, 0]));
+            }
         }));
 
 
