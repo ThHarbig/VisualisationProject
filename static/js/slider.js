@@ -81,6 +81,11 @@ function slider(div) {
                 var histogramm=hist(values,"hist",keys[key]);
                 histogramm.init()
             }
+
+            var randomSet=extractRandom(subset,800);
+            // Parallel coordinates
+            var parallel = ParCorPlot();
+            parallel.init(randomSet);
         }
         document.getElementById("update").addEventListener("click",function () {
             var s=brush.extent();
@@ -89,9 +94,9 @@ function slider(div) {
 			var tbl = table(subset,"tableDiv");
 			tbl.init();
 			$("table").tablesorter();
-            // Parallel coordinates
-            var parallel = ParCorPlot();
-            parallel.init(randomSet);
+            // // Parallel coordinates
+            // var parallel = ParCorPlot();
+            // parallel.init(randomSet);
             //Scatter plot
             d3.selectAll("#scatterDiv").selectAll("svg").remove();
             var scatter = scatter_plot(randomSet, "#scatterDiv")

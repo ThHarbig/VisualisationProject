@@ -7,8 +7,8 @@
 
 makePlot = function (subset) {
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
-        width = 600 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = 900 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {},
@@ -20,22 +20,33 @@ makePlot = function (subset) {
         foreground;
 
     var svg = d3.select("#parCoordsDiv").append("svg")
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 600 400")
-        .classed("svg-content-responsive", true)
+        .attr("width", 900)
+        .attr("height", 500)
+        // .attr("preserveAspectRatio", "xMinYMin meet")
+        // .attr("viewBox", "0 0 600 400")
+        // .classed("svg-content-responsive", true)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-    d3.select("#parCoordsDiv")
-        .classed("svg-container", true);
+    //
+    // d3.select("#parCoordsDiv")
+    //     .classed("svg-container", true);
 
     // d3.csv("testset.csv", function(error, proteins) {
 
         // Extract the list of dimensions and create a scale for each.
         x.domain(dimensions = d3.keys(subset[0]).filter(function(d) {
-            return d != "Primary_Accession" && (y[d] = d3.scale.linear()
-                    .domain(d3.extent(subset, function(p) { return +p[d]; }))
+            if (d == "Length") {
+                return (y[d] = d3.scale.linear()
+                    .domain(d3.extent(subset, function (p) {
+                        return +p[d];
+                    }))
                     .range([height, 0]));
+            }
+            else {
+                return d != "Primary_Accession" && (y[d] = d3.scale.linear()
+                        .domain([0, 100])
+                        .range([height, 0]));
+            }
         }));
 
 
