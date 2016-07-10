@@ -5,7 +5,6 @@ function table(data, div) {
     };
 
     table["init"] = function () {
-        d3.selectAll("#"+div).selectAll("table").remove();
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
                 var x = a[key];
@@ -14,9 +13,9 @@ function table(data, div) {
             });
         }
         var hasUncert=false;
-        if(d3.keys(data[0]).indexOf("Uncertainty")!=-1){
+        if(d3.keys(this.data[0]).indexOf("Uncertainty")!=-1){
             hasUncert=true;
-            sortByKey(data, "Uncertainty");
+            sortByKey(this.data, "Uncertainty");
         }
 
         var tbl = document.createElement("table");
@@ -52,7 +51,7 @@ function table(data, div) {
 
         thead.appendChild(header);
         //Add the rest of the data to the table
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < this.data.length; i++) {
             var td_comp_bias = document.createElement("td");
             var td_disorder = document.createElement("td");
             var td_length = document.createElement("td");
@@ -60,18 +59,18 @@ function table(data, div) {
             var td_primary_accession = document.createElement("td");
 
 
-            td_comp_bias.textContent = data[i]["Compositional Bias"];
-            td_disorder.textContent = data[i].Disorder;
-            td_length.textContent = data[i].Length;
-            td_membrane.textContent = data[i].Membrane;
-            td_primary_accession.textContent = data[i].Primary_Accession;
+            td_comp_bias.textContent = this.data[i]["Compositional Bias"];
+            td_disorder.textContent = this.data[i].Disorder;
+            td_length.textContent = this.data[i].Length;
+            td_membrane.textContent = this.data[i].Membrane;
+            td_primary_accession.textContent = this.data[i].Primary_Accession;
 
             var tr_body = document.createElement("tr");
 
             tr_body.appendChild(td_primary_accession);
             if(hasUncert){
                 var td_uncertainty = document.createElement("td");
-                td_uncertainty.textContent = data[i].Uncertainty;
+                td_uncertainty.textContent = this.data[i].Uncertainty;
                 tr_body.appendChild(td_uncertainty);
             }
             tr_body.appendChild(td_length);
@@ -86,7 +85,13 @@ function table(data, div) {
         tbl.appendChild(tbody);
         document.getElementById(div).appendChild(tbl);
 
-        tbl.style.border = "1px solid #000"
+        tbl.style.border = "1px solid #000";
+        $("table").tablesorter();
+    };
+    table["update"]=function (newData) {
+        d3.selectAll("#"+div).selectAll("table").remove();
+        this.data=newData;
+        this.init()
     };
 
 

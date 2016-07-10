@@ -3,8 +3,8 @@
 
     <title>Uncertainty in Proteins</title>
     <meta charset="iso-8859-1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='own.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/own.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
     <script src="/static/js/slider.js"></script>
     <script src="/static/js/hist.js"></script>
     <script src="/static/js/scatter.js"></script>
@@ -40,8 +40,16 @@
 <div id="tableDiv"></div>
 <script>
     var dataset = {{ data | safe }};
-    slider = slider("slider");
-    slider.init();
+    var start=30;
+    var end=60;
+    slider = slider("#slider");
+    slider.init(start,end);
+    var sub=extractSubset([start,end]);
+    var ran=extractRandom(sub,200);
+    var scatter = scatter_plot(ran, "#scatterDiv");
+    scatter.init();
+    var tbl = table(subset,"tableDiv");
+    tbl.init();
     //andere Plots bei slider.js beim Button aufrufen
 </script>
 </body>

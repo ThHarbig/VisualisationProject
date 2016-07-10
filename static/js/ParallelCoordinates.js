@@ -160,7 +160,6 @@ makePlot = function (subset) {
  */
 function ParCorPlot() {
     var returnDictionary = {};
-    
     returnDictionary['init'] = function (subset) {
         // Delete all elements
         d3.select("#parCoordsDiv").selectAll("svg")

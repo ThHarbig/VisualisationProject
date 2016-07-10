@@ -39,7 +39,7 @@ function hist(data, div, label) {
             .scale(x)
             .orient("bottom");
 
-        var svg = d3.select("#"+this.div).append("svg")
+        var svg = d3.select(div).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")

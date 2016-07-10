@@ -109,6 +109,12 @@ function scatter_plot(data,div) {
 			return c;
 		}
     };
+	scatter["update"]=function (newData) {
+		d3.selectAll(div).selectAll("svg").remove();
+		this.data=newData;
+		this.init();
+
+	};
 	
     return scatter
 }

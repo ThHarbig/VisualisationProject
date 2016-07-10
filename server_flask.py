@@ -44,5 +44,4 @@ def index():
 
 
 if __name__ == '__main__':
-    #readInData()
     app.run(debug=True)

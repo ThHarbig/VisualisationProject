@@ -6,7 +6,7 @@ function slider(div) {
         div:div,
         subset:[]
     };
-    slide["init"] = function () {
+    slide["init"] = function (start,end) {
         var margin = {top: 10, right: 50, bottom: 20, left: 50},
             width = 960 - margin.left - margin.right,
             height = 50 - margin.top - margin.bottom ;
@@ -19,7 +19,7 @@ function slider(div) {
 
         var brush = d3.svg.brush()
             .x(x)
-            .extent([30,60])
+            .extent([start,end])
             .on("brushstart", brushstart)
             .on("brush", brushmove)
             .on("brushend", brushend);
@@ -31,7 +31,7 @@ function slider(div) {
                 return i ? -Math.PI : Math.PI;
             });
 
-        var svg = d3.select("#"+div).append("svg")
+        var svg = d3.select(div).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -69,16 +69,15 @@ function slider(div) {
             /**
              * Call Plots here or add a seperate button
              */
-            d3.selectAll("#hist").selectAll("svg").remove();
             var s=brush.extent();
             subset=extractSubset(s);
 
             var keys=d3.keys(d3.values(subset)[0]);
             keys.splice(keys.indexOf("Primary_Accession"),1);
-
+            d3.selectAll("#hist").selectAll("svg").remove();
             for(var key in keys){
                 var values=extractFeature(subset,keys[key]);
-                var histogramm=hist(values,"hist",keys[key]);
+                var histogramm=hist(values,"#hist",keys[key]);
                 histogramm.init()
             }
 
@@ -91,16 +90,12 @@ function slider(div) {
             var s=brush.extent();
             var randomSet=extractRandom(subset,200);
             //Call complicated Plots here
-			var tbl = table(subset,"tableDiv");
-			tbl.init();
-			$("table").tablesorter();
             // // Parallel coordinates
             // var parallel = ParCorPlot();
             // parallel.init(randomSet);
             //Scatter plot
-            d3.selectAll("#scatterDiv").selectAll("svg").remove();
-            var scatter = scatter_plot(randomSet, "#scatterDiv")
-            scatter.init()
+            scatter.update(randomSet);
+            tbl.update(randomSet);
         });
 
     };
