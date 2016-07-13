@@ -1,7 +1,9 @@
 svg {
     font: 15px sans-serif;
 }
-
+body{
+    min-width:100%;
+}
 header {
     background:steelblue;
 	text-align: center;
@@ -43,6 +45,9 @@ circle {
 /**
 Hist
 **/
+.hists{
+    float: left;
+}
 .bar rect {
     fill: steelblue;
     shape-rendering: crispEdges;
