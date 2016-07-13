@@ -32,10 +32,16 @@ function slider(div) {
             });
 
         var svg = d3.select(div).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            // .attr("width", width + margin.left + margin.right)
+            // .attr("height", height + margin.top + margin.bottom)
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 960 400")
+            .classed("svg-content-responsive", true)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        d3.select("#slider")
+            .classed("svg-container", true);
 
 
         svg.append("g")
@@ -81,14 +87,14 @@ function slider(div) {
                 histogramm.init()
             }
 
-            var randomSet=extractRandom(subset,800);
+            var randomSet=extractRandom(subset,500);
             // Parallel coordinates
             var parallel = ParCorPlot();
             parallel.init(randomSet);
         }
         document.getElementById("update").addEventListener("click",function () {
             var s=brush.extent();
-            var randomSet=extractRandom(subset,200);
+            var randomSet=extractRandom(subset,1000);
             //Call complicated Plots here
             // // Parallel coordinates
             // var parallel = ParCorPlot();

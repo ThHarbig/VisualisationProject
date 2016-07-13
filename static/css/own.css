@@ -171,6 +171,9 @@ Resizing
 #parCoordsDiv{
 	padding-bottom:50%;
 }
+#slider{
+    padding-bottom:5%;
+}
 
 .svg-content-responsive {
     font: 10px sans-serif;
