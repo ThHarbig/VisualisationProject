@@ -3,6 +3,7 @@ svg {
 }
 body{
     min-width:100%;
+    font-family: sans-serif;
 }
 header {
     background:steelblue;
@@ -41,12 +42,15 @@ circle {
     fill: steelblue;
     shape-rendering: crispEdges;
 }
+#currentRange1,#currentRange2{
+    width: 60px;
+}
 
 /**
 Hist
 **/
 .hists{
-    float: left;
+    display:inline-block;
 }
 .bar rect {
     fill: steelblue;

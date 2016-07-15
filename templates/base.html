@@ -25,8 +25,9 @@
 </header>
 
 <div id="menu">
+    <p>Choose range of uncertainty:</p>
     <div id="slider"></div>
-    <button id="update">Update Plots</button>
+    <p>Current range: (Press enter)</p><input type="text" id="currentRange1"/>-<input type="text" id="currentRange2"/>
 </div>
 <div id="plots">
     <div id="plots_left">
@@ -40,16 +41,46 @@
 <div id="tableDiv"></div>
 <script>
     var dataset = {{ data | safe }};
+    var subsetsize=500;
     var start=30;
     var end=60;
-    slider = slider("#slider");
-    slider.init(start,end);
+    var Slider = slider("#slider");
+    Slider.init(start,end);
     var sub=extractSubset([start,end]);
-    var ran=extractRandom(sub,200);
+    var ran=extractRandom(sub,subsetsize);
     var scatter = scatter_plot(ran, "#scatterDiv");
     scatter.init();
     var tbl = table(subset,"tableDiv");
     tbl.init();
-    //andere Plots bei slider.js beim Button aufrufen
+    var parallel = ParCorPlot();
+    parallel.init(ran);
+    document.getElementById("currentRange1").addEventListener("keypress",function(event){
+        if(event.keyCode==13){
+            d3.selectAll("#slider").selectAll("svg").remove();
+                start=this.value;
+                end=document.getElementById("currentRange2").value;
+                var sub=extractSubset([start,end]);
+                var ran=extractRandom(sub,subsetsize);
+                var Slider = slider("#slider");
+                Slider.init(start,end);
+                scatter.update(ran);
+                parallel.update(ran);
+                tbl.update(sub);
+        }
+    });
+    document.getElementById("currentRange2").addEventListener("keypress",function(event){
+        if(event.keyCode==13){
+            d3.selectAll("#slider").selectAll("svg").remove();
+            start=document.getElementById("currentRange1").value;
+            end=this.value;
+            var sub=extractSubset([start,end]);
+            var ran=extractRandom(sub,subsetsize);
+            var Slider = slider("#slider");
+            Slider.init(start,end);
+            scatter.update(ran);
+            parallel.update(ran);
+            tbl.update(sub);
+        }
+    })
 </script>
 </body>

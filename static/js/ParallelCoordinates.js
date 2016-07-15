@@ -162,13 +162,16 @@ function ParCorPlot() {
     var returnDictionary = {};
     returnDictionary['init'] = function (subset) {
         // Delete all elements
-        d3.select("#parCoordsDiv").selectAll("svg")
-            .remove();
             // .selectAll("path").remove()
             // .selectAll("axis").remove()
             // .selectAll("text").remove()
             // .selectAll("g").remove();
         makePlot(subset);
+    };
+    returnDictionary["update"]=function (newData) {
+        d3.select("#parCoordsDiv").selectAll("svg")
+            .remove();
+        this.init(newData);
     };
     
     return returnDictionary;
