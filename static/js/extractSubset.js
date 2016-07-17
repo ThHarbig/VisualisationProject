@@ -16,7 +16,7 @@ function extractSubset(range){
     }
     var subset=[];
     for(var key in dataset){
-        if(dataset[key]["Uncertainty"]>=lower && dataset[key]["Uncertainty"]<=higher){
+        if(dataset[key]["Uncertainty"]>=lower && dataset[key]["Uncertainty"]<=higher && dataset[key]["Length"]<=6000){
             if(dist!=0){
                 subset.push(dataset[key])
             }
