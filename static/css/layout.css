@@ -1,0 +1,60 @@
+body{
+    min-width: 100%;
+    font-family: sans-serif;
+}
+header {
+    background: steelblue;
+	text-align: center;
+    margin :0px auto;
+}
+h1 {
+	font-size: 48pt;
+	color: white;
+}
+svg {
+    font: 15px sans-serif;
+}
+#menu {
+    text-align: center;
+}
+#plots {
+    width: 100%;
+	display: inline-block;
+}
+#plots_left, #plots_right{
+    width: 50%;
+	float: left;
+}
+#hist{
+    margin-top: 50px;
+}
+.hists{
+    display:inline-block;
+}
+#slider {
+    width: 80%;
+    margin: auto;
+    padding-bottom:5%;
+	float: left;
+}
+#parCoordsDiv{
+	padding-bottom:50%;
+}
+#tableDiv{
+    height: 500px;
+    overflow: auto;
+}.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: middle;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    font: 10px sans-serif;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

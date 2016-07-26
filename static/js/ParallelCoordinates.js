@@ -37,7 +37,7 @@ makePlot = function (subset) {
         x.domain(dimensions = d3.keys(subset[0]).filter(function(d) {
             if (d == "Length") {
                 return (y[d] = d3.scale.linear()
-                    .domain([0, 5500])
+                    .domain([0, 6000])
                     .range([height, 0]));
             }
             else {

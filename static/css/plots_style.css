@@ -1,0 +1,133 @@
+/**
+General
+**/
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+}
+/**
+Slider
+**/
+circle {
+    -webkit-transition: fill-opacity 250ms linear;
+}
+
+.selecting circle {
+    fill-opacity: .2;
+}
+
+.selecting circle.selected {
+    stroke: #f00;
+}
+
+.resize path {
+    fill: lightblue;
+    fill-opacity: .5;
+    stroke: #000;
+    stroke-width: 0px;
+}
+.brush .extent {
+    fill-opacity: .7;
+    fill: steelblue;
+    shape-rendering: crispEdges;
+}
+#currentRange1,#currentRange2{
+    width: 60px;
+}
+/**
+Hist
+**/
+.bar rect {
+    fill: steelblue;
+    shape-rendering: crispEdges;
+}
+.bar text {
+    fill: #fff;
+}
+.hist{
+    font-size: 9px;
+}
+/**
+PC
+**/
+.background path {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+}
+.foreground path {
+    fill: none;
+    stroke: steelblue;
+}
+.axis text {
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
+}
+/**
+SPLOM
+**/
+#scatterDiv .x.axis line, .y.axis line {
+	stroke: #ddd;
+}
+#scatterDiv .axis path {
+	display: none;
+}
+#scatterDiv text {
+	font-size: 12pt;
+}
+
+.cell text {
+	font-weight: bold;
+	text-transform: capitalize;
+}
+.frame {
+	fill: none;
+	stroke: #000;
+}
+circle {
+	stroke: #000;
+	stroke-width: 0.5px;
+	fill: steelblue;
+	fill-opacity: .5;
+}
+/**
+Table
+**/
+table.tablesorter {
+	font-family: arial;
+	background-color: #CDCDCD;
+	margin: 10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color: #F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #8dbdd8;
+}
