@@ -41,7 +41,7 @@
 <div id="tableDiv"></div>
 <script>
     var dataset = {{ data | safe }};
-    var subsetsize=500;
+    var subsetsize=300;
     var start=30;
     var end=60;
     var Slider = slider("#slider");
@@ -50,15 +50,17 @@
     var ran=extractRandom(sub,subsetsize);
     var scatter = scatter_plot(ran, "#scatterDiv");
     scatter.init();
-    var tbl = table(subset,"tableDiv");
+    var tbl = table(sub,"tableDiv");
     tbl.init();
     var parallel = ParCorPlot();
     parallel.init(ran);
+    histograms(sub);
     document.getElementById("currentRange1").addEventListener("keypress",function(event){
         if(event.keyCode==13){
             d3.selectAll("#slider").selectAll("svg").remove();
                 start=this.value;
                 end=document.getElementById("currentRange2").value;
+                console.log(start,end);
                 var sub=extractSubset([start,end]);
                 var ran=extractRandom(sub,subsetsize);
                 var Slider = slider("#slider");
@@ -66,6 +68,7 @@
                 scatter.update(ran);
                 parallel.update(ran);
                 tbl.update(sub);
+                histograms(sub);
         }
     });
     document.getElementById("currentRange2").addEventListener("keypress",function(event){
@@ -73,6 +76,7 @@
             d3.selectAll("#slider").selectAll("svg").remove();
             start=document.getElementById("currentRange1").value;
             end=this.value;
+            console.log(start,end);
             var sub=extractSubset([start,end]);
             var ran=extractRandom(sub,subsetsize);
             var Slider = slider("#slider");
@@ -80,6 +84,7 @@
             scatter.update(ran);
             parallel.update(ran);
             tbl.update(sub);
+            histograms(sub);
         }
     })
 </script>

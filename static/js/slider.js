@@ -65,16 +65,18 @@ function slider(div) {
 
         function brushmove() {
             var s = brush.extent();
-            callOtherPlots();
+            //callOtherPlots();
             d3.selectAll("#currentRange1").attr("value", (Math.round(s[0] * 100) / 100));
             d3.selectAll("#currentRange2").attr("value", (Math.round(s[1] * 100) / 100));
         }
 
         function brushend() {
             var s = brush.extent();
+            var subset = extractSubset(s);
             var randomSet = extractRandom(subset, subsetsize);
             //Call complicated Plots here
             // // Parallel coordinates
+            histograms(subset);
             parallel.update(randomSet);
             //Scatter plot
             scatter.update(randomSet);
@@ -82,23 +84,18 @@ function slider(div) {
             svg.classed("selecting", !d3.event.target.empty());
         }
 
-        function callOtherPlots() {
-            /**
-             * Call Plots here or add a seperate button
-             */
-            var s = brush.extent();
-            subset = extractSubset(s);
 
-            var keys = d3.keys(d3.values(subset)[0]);
-            keys.splice(keys.indexOf("Primary_Accession"), 1);
-            d3.selectAll(".hists").remove();
-            for (var key in keys) {
-                var values = extractFeature(subset, keys[key]);
-                var histogramm = hist(values, "#hist", keys[key], key);
-                histogramm.init()
-            }
-        }
     };
 
     return slide
+}
+function histograms(subset) {
+    var keys = d3.keys(d3.values(subset)[0]);
+    keys.splice(keys.indexOf("Primary_Accession"), 1);
+    d3.selectAll(".hists").remove();
+    for (var key in keys) {
+        var values = extractFeature(subset, keys[key]);
+        var histogramm = hist(values, "#hist", keys[key], key);
+        histogramm.init()
+    }
 }

@@ -30,7 +30,8 @@ def readInData():
                     entry["Disorder"] = float(row[3])
                     entry["Compositional Bias"]=float(row[4])
                     entry["Membrane"]=float(row[5])
-                data.append(entry)
+                if row[3]!="NA":
+                    data.append(entry)
     data=json.dumps(data)
     return data
 

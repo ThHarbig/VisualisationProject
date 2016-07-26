@@ -10,27 +10,9 @@ function extractSubset(range){
     var lower=range[0];
     var higher=range[1];
     var dist=lower-higher;
-    if(range[0]>=range[1]){
-        lower=range[1];
-        higher=range[0];
-    }
-    var subset=[];
-    for(var key in dataset){
-        if(dataset[key]["Uncertainty"]>=lower && dataset[key]["Uncertainty"]<=higher){
-            if(dist!=0){
-                subset.push(dataset[key])
-            }
-            else{
-                var topush=[];
-                for(var k in dataset[key]) {
-                    if(k!="Uncertainty"){
-                        topush[k]=dataset[key][k]
-                    }
-                }
-                subset.push(topush)
-            }
-        }
-    }
+    var subset=dataset.filter(function(entry){
+       return entry["Uncertainty"]>=lower && entry["Uncertainty"]<=higher;
+    });
     return subset
 }
 /**
@@ -48,7 +30,6 @@ function extractRandom(subset,number){
         if(randomIndices.indexOf(index)==-1){
             randomSubset.push(subset[index]);
             i+=1
-
         }
     }
     return randomSubset
@@ -60,9 +41,7 @@ function extractRandom(subset,number){
  * @returns {Array}
  */
 function extractFeature(data,feature){
-    var values=[];
-    for (var key in data){
-        values.push(data[key][feature])
-    }
-    return values
+    return data.map(function (entry) {
+        return entry[feature]
+    })
 }
